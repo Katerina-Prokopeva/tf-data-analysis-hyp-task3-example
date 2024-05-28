@@ -2,10 +2,14 @@ import pandas as pd
 import numpy as np
 
 
-chat_id = 123456 # Ваш chat ID, не меняйте название переменной
+chat_id = 345280072 # Ваш chat ID, не меняйте название переменной
 
-def solution(...) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+def solution(control: np.ndarray, test: np.ndarray) -> bool:
+    # Односторонний независимый t-тест
+    t_stat, p_value = stats.ttest_ind(test, control, alternative='greater')
+    
+    # Уровень значимости
+    alpha = 0.04
+    
+    # Отклоняем нулевую гипотезу, если p-значение меньше уровня значимости
+    return p_value < alpha
